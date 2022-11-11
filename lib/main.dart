@@ -4,6 +4,7 @@ import 'package:proyecto_final/screens/student/student_main.dart';
 import 'package:proyecto_final/screens/student/student.dart';
 import 'package:proyecto_final/screens/student/student_permission.dart';
 import 'package:proyecto_final/screens/student/student_present.dart';
+import 'package:proyecto_final/screens/student/student_present_confirm.dart';
 import 'package:proyecto_final/screens/student/student_sick.dart';
 import 'package:proyecto_final/screens/teacher/teacher.dart';
 import 'package:proyecto_final/screens/teacher/teacher_main.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/student': (context) => const Student(),
         '/student/main': (context) => const StudentMain(),
         '/student/present': (context) => const StudentPresent(),
+        '/student/present/confirm': (context) => const StudentPresentConfirm(),
         '/student/sick': (context) => const StudentSick(),
         '/student/permission': (context) => const StudentPermission(),
         '/teacher/main': (context) => const TeacherMain(),

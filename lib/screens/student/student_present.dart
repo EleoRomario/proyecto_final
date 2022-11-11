@@ -28,7 +28,9 @@ class _StudentPresentState extends State<StudentPresent> {
                     child: Container(
                   alignment: Alignment.center,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/student/present/confirm');
+                    },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 10),
