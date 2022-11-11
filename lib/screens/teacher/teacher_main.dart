@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final/src/config/color_constants.dart';
 
 class TeacherMain extends StatefulWidget {
   const TeacherMain({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _TeacherMainState extends State<TeacherMain> {
                   height: 200,
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
-                      color: Colors.blue,
+                      color: ColorConstants.blue,
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(50),
                           bottomRight: Radius.circular(50))),
@@ -121,6 +122,35 @@ class _TeacherMainState extends State<TeacherMain> {
                               ),
                             ],
                           ),
+                        ),
+                        const SizedBox(height: 20),
+                        Column(
+                          children: [
+                            Container(
+                              height: 50,                              
+                              width: MediaQuery.of(context).size.width,
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: ColorConstants.blue,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: const[
+                                  BoxShadow(
+                                    color: Color.fromARGB(59, 0, 0, 0),
+                                    blurRadius: 10.0,
+                                    spreadRadius: 1.0,
+                                    offset: Offset(0.0, 0.0),
+                                  )
+                                ],
+                              ),    
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: const[
+                                  Expanded(child: Icon(Icons.book, color: Colors.white)),
+                                  Expanded(child: Text('Curso 1', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400))),
+                                ],
+                              ),
+                            )
+                          ],
                         )
                       ]),
                 ),

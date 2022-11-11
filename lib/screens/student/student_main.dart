@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
+import 'package:proyecto_final/widgets/drawer_student.dart';
 
 class StudentMain extends StatefulWidget {
   const StudentMain({Key? key}) : super(key: key);
@@ -12,6 +13,10 @@ class _StudentMainState extends State<StudentMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+        ),
+        drawer: const DrawerStudent(),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Center(
