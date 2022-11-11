@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
+import 'package:proyecto_final/widgets/drawer_teacher.dart';
 
 class TeacherMain extends StatefulWidget {
   const TeacherMain({Key? key}) : super(key: key);
@@ -12,6 +13,10 @@ class _TeacherMainState extends State<TeacherMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+        ),
+        drawer: const DrawerTeacher(),
         backgroundColor: Colors.white,
         body: SafeArea(
             child: Center(
@@ -109,7 +114,9 @@ class _TeacherMainState extends State<TeacherMain> {
                                       fontSize: 20,
                                       fontWeight: FontWeight.w400)),
                               ElevatedButton.icon(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/teacher/new_class');
+                                },
                                 icon: const Icon(Icons.add, color: Colors.grey),
                                 label: const Text('Crear curso',
                                     style: TextStyle(color: Colors.grey)),
@@ -128,7 +135,7 @@ class _TeacherMainState extends State<TeacherMain> {
                           children: [
                             Container(
                               height: 50,                              
-                              width: MediaQuery.of(context).size.width,
+                              width: MediaQuery.of(context).size.width - 100,
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                 color: ColorConstants.blue,

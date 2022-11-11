@@ -12,6 +12,7 @@ import 'package:proyecto_final/screens/student/student_sick_form.dart';
 import 'package:proyecto_final/screens/student/student_sick_form_confirm.dart';
 import 'package:proyecto_final/screens/teacher/teacher.dart';
 import 'package:proyecto_final/screens/teacher/teacher_main.dart';
+import 'package:proyecto_final/screens/teacher/teacher_new_class.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
 
 void main() {
@@ -33,7 +34,6 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const Login(),
-        '/teacher': (context) => const Teacher(),
         '/student': (context) => const Student(),
         '/student/main': (context) => const StudentMain(),
         '/student/present': (context) => const StudentPresent(),
@@ -44,7 +44,9 @@ class MyApp extends StatelessWidget {
         '/student/permission': (context) => const StudentPermission(),
         '/student/permission/form': (context) => const StudentPermissionForm(),
         '/student/permission/form/confirm': (context) => const StudentPermissionFormConfirm(),
+        '/teacher': (context) => const Teacher(),
         '/teacher/main': (context) => const TeacherMain(),
+        '/teacher/new_class': (context) => const TeacherNewClass(),
       },
     );
   }
