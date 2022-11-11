@@ -6,6 +6,8 @@ import 'package:proyecto_final/screens/student/student_permission.dart';
 import 'package:proyecto_final/screens/student/student_present.dart';
 import 'package:proyecto_final/screens/student/student_present_confirm.dart';
 import 'package:proyecto_final/screens/student/student_sick.dart';
+import 'package:proyecto_final/screens/student/student_sick_form.dart';
+import 'package:proyecto_final/screens/student/student_sick_form_confirm.dart';
 import 'package:proyecto_final/screens/teacher/teacher.dart';
 import 'package:proyecto_final/screens/teacher/teacher_main.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
@@ -35,6 +37,8 @@ class MyApp extends StatelessWidget {
         '/student/present': (context) => const StudentPresent(),
         '/student/present/confirm': (context) => const StudentPresentConfirm(),
         '/student/sick': (context) => const StudentSick(),
+        '/student/sick/form': (context) => const StudentSickForm(),
+        '/student/sick/form/confirm': (context) => const StudentSickFormConfirm(),
         '/student/permission': (context) => const StudentPermission(),
         '/teacher/main': (context) => const TeacherMain(),
       },

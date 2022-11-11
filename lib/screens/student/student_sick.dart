@@ -27,7 +27,9 @@ class _StudentSickState extends State<StudentSick> {
                     child: Container(
                   alignment: Alignment.center,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/student/sick/form');
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ColorConstants.green,
                       padding: const EdgeInsets.symmetric(
