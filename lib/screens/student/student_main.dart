@@ -219,9 +219,11 @@ class _StudentMainState extends State<StudentMain> {
                                                 ],
                                               ),
                                             ),
-                                            Expanded(
-                                              child: ElevatedButton.icon(
-                                                onPressed: () {},
+                                            ElevatedButton.icon(       
+                                              onPressed: () {
+                                                Navigator.pushNamed(
+                                                    context, '/student/present');
+                                              },                                     
                                                 icon: const Icon(
                                                     Icons.center_focus_weak),
                                                 label: const Text('Asistencia'),
@@ -231,9 +233,8 @@ class _StudentMainState extends State<StudentMain> {
                                                         BorderRadius.circular(
                                                             50),
                                                   ),
-                                                ),
+                                                ),                                                
                                               ),
-                                            ),
                                           ],
                                         )
                                       ],

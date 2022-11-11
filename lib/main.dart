@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_final/screens/login.dart';
 import 'package:proyecto_final/screens/student/student_main.dart';
 import 'package:proyecto_final/screens/student/student.dart';
+import 'package:proyecto_final/screens/student/student_present.dart';
 import 'package:proyecto_final/screens/teacher/teacher.dart';
 import 'package:proyecto_final/screens/teacher/teacher_main.dart';
+import 'package:proyecto_final/src/config/color_constants.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,16 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: ColorConstants.primary,
+        fontFamily: 'Poppins',
       ),
       initialRoute: '/',
       routes: {
@@ -35,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/teacher': (context) => const Teacher(),
         '/student': (context) => const Student(),
         '/student/main': (context) => const StudentMain(),
+        '/student/present': (context) => const StudentPresent(),
         '/teacher/main': (context) => const TeacherMain(),
       },
     );
