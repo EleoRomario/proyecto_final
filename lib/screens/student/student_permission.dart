@@ -27,7 +27,9 @@ class _StudentPermissionState extends State<StudentPermission> {
                     child: Container(
                   alignment: Alignment.center,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/student/permission/form');
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ColorConstants.yellow,
                       padding: const EdgeInsets.symmetric(
