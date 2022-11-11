@@ -12,183 +12,188 @@ class _StudentMainState extends State<StudentMain> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: SafeArea(
+        body: SingleChildScrollView(
             child: Center(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
               Container(
-                height: 280,
-                  padding:const EdgeInsets.only(bottom: 20),
+                  height: 290,
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: Stack(
-                    alignment: Alignment.topCenter,
-                    clipBehavior: Clip.none,
-                    children: [
-                    Positioned(                  
-                      child: Container(
-                        padding: const EdgeInsets.all(20),
-                        height: 200,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: const BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(50),
-                                bottomRight: Radius.circular(50))),
-                      ),
-                    ),
-                    Positioned(
-                      top: 80,
-                      child: Center(
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                            Container(
-                                padding: const EdgeInsets.all(20),
-                                width: MediaQuery.of(context).size.width - 100,
-                                decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Color.fromARGB(59, 0, 0, 0),
-                                        blurRadius: 10.0,
-                                        spreadRadius: 1.0,
-                                        offset: Offset(0.0, 0.0),
-                                      )
-                                    ]),
-                                child: Column(
+                      alignment: Alignment.topCenter,
+                      clipBehavior: Clip.none,
+                      children: [
+                        Positioned(
+                          child: Container(
+                            padding: const EdgeInsets.all(20),
+                            height: 200,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: const BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(50),
+                                    bottomRight: Radius.circular(50))),
+                          ),
+                        ),
+                        Positioned(
+                          top: 80,
+                          child: Center(
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                Container(
+                                    padding: const EdgeInsets.all(20),
+                                    width:
+                                        MediaQuery.of(context).size.width - 100,
+                                    decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Color.fromARGB(59, 0, 0, 0),
+                                            blurRadius: 10.0,
+                                            spreadRadius: 1.0,
+                                            offset: Offset(0.0, 0.0),
+                                          )
+                                        ]),
+                                    child: Column(
                                       children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                          ),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            child: Image.network(
-                                              'https://images.unsplash.com/photo-1562246229-37b3aca47e18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-                                              height: 80,
-                                              width: 80,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                        Column(
+                                        Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                              MainAxisAlignment.spaceAround,
                                           children: [
-                                            Text(
-                                              'Nombre Alumno',
-                                              style: TextStyle(
-                                                  color: Colors.grey[900],
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w400),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                              ),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                child: Image.network(
+                                                  'https://images.unsplash.com/photo-1562246229-37b3aca47e18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+                                                  height: 80,
+                                                  width: 80,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
                                             ),
-                                            Text(
-                                              'correo@gmail.com',
-                                              style: TextStyle(
-                                                  color: Colors.grey[400],
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w400),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Nombre Alumno',
+                                                  style: TextStyle(
+                                                      color: Colors.grey[900],
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                                Text(
+                                                  'correo@gmail.com',
+                                                  style: TextStyle(
+                                                      color: Colors.grey[400],
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const Divider(
+                                          color: Color.fromARGB(
+                                              255, 235, 235, 235),
+                                          height: 20,
+                                          thickness: 1,
+                                          indent: 20,
+                                          endIndent: 20,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Presente',
+                                                    style: TextStyle(
+                                                        color: Colors.grey[800],
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                  const Text(
+                                                    '24',
+                                                    style: TextStyle(
+                                                        color: Colors.blue,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Enfermo',
+                                                    style: TextStyle(
+                                                        color: Colors.grey[800],
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                  const Text(
+                                                    '2',
+                                                    style: TextStyle(
+                                                        color: Colors.green,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Permiso',
+                                                    style: TextStyle(
+                                                        color: Colors.grey[900],
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                  const Text(
+                                                    '2',
+                                                    style: TextStyle(
+                                                        color: Colors.orange,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  )
+                                                ],
+                                              ),
                                             )
                                           ],
                                         ),
-                                      ],
-                                    ),
-                                    const Divider(
-                                      color: Color.fromARGB(255, 235, 235, 235),
-                                      height: 20,
-                                      thickness: 1,
-                                      indent: 20,
-                                      endIndent: 20,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Presente',
-                                                style: TextStyle(
-                                                    color: Colors.grey[800],
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              const Text(
-                                                '24',
-                                                style: TextStyle(
-                                                    color: Colors.blue,
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              )
-                                            ],
-                                          ),
+                                        const SizedBox(
+                                          height: 10,
                                         ),
-                                        Expanded(
-                                          child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Enfermo',
-                                                style: TextStyle(
-                                                    color: Colors.grey[800],
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              const Text(
-                                                '2',
-                                                style: TextStyle(
-                                                    color: Colors.green,
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Permiso',
-                                                style: TextStyle(
-                                                    color: Colors.grey[900],
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              const Text(
-                                                '2',
-                                                style: TextStyle(
-                                                    color: Colors.orange,
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
+                                        Row(
                                           children: [
                                             Expanded(
                                               child: Column(
@@ -216,26 +221,26 @@ class _StudentMainState extends State<StudentMain> {
                                             ),
                                             Expanded(
                                               child: ElevatedButton.icon(
-                                                onPressed: (){}, 
-                                                icon: const Icon(Icons.center_focus_weak),
+                                                onPressed: () {},
+                                                icon: const Icon(
+                                                    Icons.center_focus_weak),
                                                 label: const Text('Asistencia'),
                                                 style: ElevatedButton.styleFrom(
                                                   shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(50),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50),
                                                   ),
                                                 ),
                                               ),
                                             ),
                                           ],
                                         )
-
-                                  ],
-                                )),
-                          ])),
-                    ),
-                  ])
-              ),
-                  
+                                      ],
+                                    )),
+                              ])),
+                        ),
+                      ])),
               const SizedBox(height: 40),
               Container(
                 padding: const EdgeInsets.all(20),
@@ -249,28 +254,217 @@ class _StudentMainState extends State<StudentMain> {
                       children: [
                         SizedBox(
                           width: MediaQuery.of(context).size.width - 100,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Mis cursos',
+                              Text('Nivel',
                                   style: TextStyle(
-                                      color: Colors.grey[900],
+                                      color: Colors.grey[800],
                                       fontSize: 20,
-                                      fontWeight: FontWeight.w400)),
-                              ElevatedButton.icon(
-                                onPressed: () {},
-                                icon: const Icon(Icons.add, color: Colors.grey),
-                                label: const Text('Crear curso', style: TextStyle(color: Colors.grey)),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
+                                      fontWeight: FontWeight.w700)),
+                              const SizedBox(
+                                height: 10,
                               ),
+                              Row(children: [
+                                Expanded(
+                                    child: Container(
+                                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius:
+                                        BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      const Icon(Icons.school,
+                                          color: Colors.white, size: 30),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Row(
+                                        children: const [
+                                          Text('15',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.w700)),
+                                          Text('/',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.w700)),
+                                          Text(' 30',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.w400)),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                )),
+                                Expanded(
+                                    child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 18, horizontal: 20),
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    border: Border.all(
+                                        color: Colors.blue, width: 1),
+                                    borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
+                                  ),
+                                  child: Text('Llevas 15 días de asistencia',
+                                      style: TextStyle(
+                                          color: Colors.grey[800],
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400)),
+                                ))
+                              ])
                             ],
                           ),
-                        )
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width - 100,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Eventos',
+                                  style: TextStyle(
+                                      color: Colors.grey[800],
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700)),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(child: Container(
+                                    height: 100,
+                                    alignment: Alignment.center,
+                                    padding: const EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 5,
+                                          blurRadius: 7,
+                                          offset: const Offset(0, 3), // changes position of shadow
+                                        ),
+                                      ],
+                                    ),
+                                    child: const Text('Ultimo evento',
+                                        style: TextStyle(
+                                            color: Colors.blue,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w400)),
+                                  )),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(child: Container(
+                                    height: 100,
+                                    padding: const EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                        color: Colors.blue,
+                                        border: Border.all(
+                                            color: Colors.blue, width: 1),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10))),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: const[
+                                        Icon(Icons.calendar_month, color: Colors.white, size: 30,),
+                                        Text('Calendario',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w400)),
+                                      ],
+                                    )
+                                  ))
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width - 100,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Notificaciones',
+                                  style: TextStyle(
+                                      color: Colors.grey[800],
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700)),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Column(
+                                children: [                                  
+                                  Container(
+                                    alignment: Alignment.center,
+                                    padding: const EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 5,
+                                          blurRadius: 7,
+                                          offset: const Offset(0, 3), // changes position of shadow
+                                        ),
+                                      ],
+                                    ),
+                                    child: const Text('Ultima notificación',
+                                        style: TextStyle(
+                                            color: Colors.blue,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w400)),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.all(10),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        color: Colors.blue,
+                                        border: Border.all(
+                                            color: Colors.blue, width: 1),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10))),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: const[
+                                        Icon(Icons.notifications, color: Colors.white, size: 30,),
+                                        Text('Crear notificación',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w400)),
+                                      ],
+                                    )
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+
                       ]),
                 ),
               )
