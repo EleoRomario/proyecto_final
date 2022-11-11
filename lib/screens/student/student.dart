@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final/src/config/color_constants.dart';
 
 class Student extends StatefulWidget {
   const Student({ Key? key }) : super(key: key);
@@ -34,7 +35,7 @@ class _StudentState extends State<Student> {
                   height: 300,
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
-                      color: Colors.blue,
+                      color: ColorConstants.blue,
                       borderRadius:
                           BorderRadius.only(topRight: Radius.circular(50))),
                   child: Column(

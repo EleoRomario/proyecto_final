@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final/src/config/color_constants.dart';
 
 class Teacher extends StatefulWidget {
   const Teacher({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class _TeacherState extends State<Teacher> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onHorizontalDragUpdate: (dragDetail) {
-        if (dragDetail.delta.direction <= 0) {
+        if (dragDetail.delta.direction >= 0) {
           Navigator.pushNamed(context, '/student');
         }
       },
@@ -34,7 +35,7 @@ class _TeacherState extends State<Teacher> {
               height: 300,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
-                  color: Colors.blue,
+                  color: ColorConstants.blue,
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(50))),
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
-
-class StudentPresent extends StatefulWidget {
-  const StudentPresent({Key? key}) : super(key: key);
+class StudentSick extends StatefulWidget {
+  const StudentSick({ Key? key }) : super(key: key);
 
   @override
-  _StudentPresentState createState() => _StudentPresentState();
+  _StudentSickState createState() => _StudentSickState();
 }
 
-class _StudentPresentState extends State<StudentPresent> {
+class _StudentSickState extends State<StudentSick> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+   return GestureDetector(
         onHorizontalDragUpdate: (dragDetail) {
           if (dragDetail.delta.direction >= 0) {
-            Navigator.pushNamed(context, '/student/sick');
+            Navigator.pushNamed(context, '/student/permission');
           }
         },
         child: Scaffold(
-            backgroundColor: ColorConstants.blue,
+            backgroundColor: ColorConstants.green,
             body: SafeArea(
                 child: Center(
                     child: Stack(
-                      alignment: Alignment.center,
+              alignment: Alignment.center,
               children: [
                 Positioned(
                     child: Container(
@@ -30,15 +29,16 @@ class _StudentPresentState extends State<StudentPresent> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorConstants.green,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 10),
                       side: const BorderSide(color: Colors.white, width: 4),
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(35))),
-                          elevation: 0,
+                      elevation: 0,
                     ),
                     child: const Text(
-                      'PRESENTE',
+                      'ENFERMO',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 40,
@@ -47,12 +47,11 @@ class _StudentPresentState extends State<StudentPresent> {
                   ),
                 )),
                 const Positioned(
-                  bottom: 50,
-                  child: Text(
-                    'Deslice para ver otra opción',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
-                  )
-                )
+                    bottom: 50,
+                    child: Text(
+                      'Deslice para ver otra opción',
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ))
               ],
             )))));
   }

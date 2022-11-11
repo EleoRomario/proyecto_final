@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final/src/config/color_constants.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class _LoginState extends State<Login> {
                                 fontWeight: FontWeight.w300)),
                         const Text('SchoolApp',
                             style: TextStyle(
-                                color: Colors.blue,
+                                color: ColorConstants.blue,
                                 fontSize: 50,
                                 fontWeight: FontWeight.w800)),
                         const SizedBox(height: 50),

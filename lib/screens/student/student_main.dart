@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final/src/config/color_constants.dart';
 
 class StudentMain extends StatefulWidget {
   const StudentMain({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _StudentMainState extends State<StudentMain> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
               Container(
-                  height: 290,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   padding: const EdgeInsets.only(bottom: 20),
                   child: Stack(
                       alignment: Alignment.topCenter,
@@ -30,7 +31,7 @@ class _StudentMainState extends State<StudentMain> {
                             height: 200,
                             width: MediaQuery.of(context).size.width,
                             decoration: const BoxDecoration(
-                                color: Colors.blue,
+                                color: ColorConstants.blue,
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(50),
                                     bottomRight: Radius.circular(50))),
@@ -90,15 +91,15 @@ class _StudentMainState extends State<StudentMain> {
                                                   'Nombre Alumno',
                                                   style: TextStyle(
                                                       color: Colors.grey[900],
-                                                      fontSize: 20,
+                                                      fontSize: 18,
                                                       fontWeight:
-                                                          FontWeight.w400),
+                                                          FontWeight.w600),
                                                 ),
                                                 Text(
                                                   'correo@gmail.com',
                                                   style: TextStyle(
                                                       color: Colors.grey[400],
-                                                      fontSize: 15,
+                                                      fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.w400),
                                                 )
@@ -132,7 +133,7 @@ class _StudentMainState extends State<StudentMain> {
                                                   const Text(
                                                     '24',
                                                     style: TextStyle(
-                                                        color: Colors.blue,
+                                                        color: ColorConstants.blue,
                                                         fontSize: 20,
                                                         fontWeight:
                                                             FontWeight.w500),
@@ -272,7 +273,7 @@ class _StudentMainState extends State<StudentMain> {
                                   padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                                   width: MediaQuery.of(context).size.width,
                                   decoration: const BoxDecoration(
-                                    color: Colors.blue,
+                                    color: ColorConstants.blue,
                                     borderRadius:
                                         BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
                                   ),
@@ -313,7 +314,7 @@ class _StudentMainState extends State<StudentMain> {
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     border: Border.all(
-                                        color: Colors.blue, width: 1),
+                                        color: ColorConstants.blue, width: 1),
                                     borderRadius: const BorderRadius.only(
                                         topRight: Radius.circular(10),
                                         bottomRight: Radius.circular(10)),
@@ -364,7 +365,7 @@ class _StudentMainState extends State<StudentMain> {
                                     ),
                                     child: const Text('Ultimo evento',
                                         style: TextStyle(
-                                            color: Colors.blue,
+                                            color: ColorConstants.blue,
                                             fontSize: 15,
                                             fontWeight: FontWeight.w400)),
                                   )),
@@ -375,9 +376,9 @@ class _StudentMainState extends State<StudentMain> {
                                     height: 100,
                                     padding: const EdgeInsets.all(20),
                                     decoration: BoxDecoration(
-                                        color: Colors.blue,
+                                        color: ColorConstants.blue,
                                         border: Border.all(
-                                            color: Colors.blue, width: 1),
+                                            color: ColorConstants.blue, width: 1),
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(10))),
                                     child: Column(
@@ -432,7 +433,7 @@ class _StudentMainState extends State<StudentMain> {
                                     ),
                                     child: const Text('Ultima notificación',
                                         style: TextStyle(
-                                            color: Colors.blue,
+                                            color: ColorConstants.blue,
                                             fontSize: 15,
                                             fontWeight: FontWeight.w400)),
                                   ),
@@ -443,9 +444,9 @@ class _StudentMainState extends State<StudentMain> {
                                     padding: const EdgeInsets.all(10),
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
-                                        color: Colors.blue,
+                                        color: ColorConstants.blue,
                                         border: Border.all(
-                                            color: Colors.blue, width: 1),
+                                            color: ColorConstants.blue, width: 1),
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(10))),
                                     child: Row(
