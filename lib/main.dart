@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final/screens/login.dart';
+import 'package:proyecto_final/screens/student/student_main.dart';
 import 'package:proyecto_final/screens/student/student.dart';
 import 'package:proyecto_final/screens/teacher/teacher.dart';
+import 'package:proyecto_final/screens/teacher/teacher_main.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => const Login(),
         '/teacher': (context) => const Teacher(),
         '/student': (context) => const Student(),
+        '/student/main': (context) => const StudentMain(),
+        '/teacher/main': (context) => const TeacherMain(),
       },
     );
   }

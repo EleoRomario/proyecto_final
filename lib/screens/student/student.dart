@@ -49,7 +49,7 @@ class _StudentState extends State<Student> {
                                   BorderRadius.all(Radius.circular(50))),
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/teacher');
+                          Navigator.pushNamed(context, '/student/main');
                         },
                         child: Text(
                           'Estudiante',
