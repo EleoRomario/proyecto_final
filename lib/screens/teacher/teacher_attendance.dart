@@ -150,7 +150,7 @@ class _TeacherAttendanceState extends State<TeacherAttendance> {
                                             ElevatedButton.icon(
                                               onPressed: () {
                                                 Navigator.pushNamed(context,
-                                                    '/student/present');
+                                                    '/teacher/attendance/confirm');
                                               },
                                               icon: const Icon(
                                                   Icons.done_sharp),

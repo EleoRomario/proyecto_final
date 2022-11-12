@@ -34,7 +34,7 @@ class _TeacherNewClassState extends State<TeacherNewClass> {
                     children: [
               Container(
                   padding: const EdgeInsets.all(20),
-                  height: 200,
+                  height: 150,
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                       color: ColorConstants.blue,

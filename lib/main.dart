@@ -12,6 +12,7 @@ import 'package:proyecto_final/screens/student/student_sick_form.dart';
 import 'package:proyecto_final/screens/student/student_sick_form_confirm.dart';
 import 'package:proyecto_final/screens/teacher/teacher.dart';
 import 'package:proyecto_final/screens/teacher/teacher_attendance.dart';
+import 'package:proyecto_final/screens/teacher/teacher_attendance_confirm.dart';
 import 'package:proyecto_final/screens/teacher/teacher_main.dart';
 import 'package:proyecto_final/screens/teacher/teacher_new_class.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         '/teacher/main': (context) => const TeacherMain(),
         '/teacher/new_class': (context) => const TeacherNewClass(),
         '/teacher/attendance': (context) => const TeacherAttendance(),
+        '/teacher/attendance/confirm': (context) => const TeacherAttendanceConfirm(),
       },
     );
   }
