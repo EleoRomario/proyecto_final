@@ -115,7 +115,8 @@ class _TeacherMainState extends State<TeacherMain> {
                                       fontWeight: FontWeight.w400)),
                               ElevatedButton.icon(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, '/teacher/new_class');
+                                  Navigator.pushNamed(
+                                      context, '/teacher/new_class');
                                 },
                                 icon: const Icon(Icons.add, color: Colors.grey),
                                 label: const Text('Crear curso',
@@ -133,28 +134,21 @@ class _TeacherMainState extends State<TeacherMain> {
                         const SizedBox(height: 20),
                         Column(
                           children: [
-                            Container(
-                              height: 50,                              
-                              width: MediaQuery.of(context).size.width - 100,
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: ColorConstants.blue,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: const[
-                                  BoxShadow(
-                                    color: Color.fromARGB(59, 0, 0, 0),
-                                    blurRadius: 10.0,
-                                    spreadRadius: 1.0,
-                                    offset: Offset(0.0, 0.0),
-                                  )
-                                ],
-                              ),    
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: const[
-                                  Expanded(child: Icon(Icons.book, color: Colors.white)),
-                                  Expanded(child: Text('Curso 1', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400))),
-                                ],
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: ElevatedButton.icon(
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, '/teacher/attendance');
+                                },
+                                icon: const Icon(Icons.book),
+                                label: const Text('Curso 1'),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: ColorConstants.blue,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
                               ),
                             )
                           ],

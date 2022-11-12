@@ -24,7 +24,7 @@ class _StudentMainState extends State<StudentMain> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
               Container(
-                  height: MediaQuery.of(context).size.height * 0.4,
+                  height: 270,
                   padding: const EdgeInsets.only(bottom: 20),
                   child: Stack(
                       alignment: Alignment.topCenter,
@@ -33,7 +33,7 @@ class _StudentMainState extends State<StudentMain> {
                         Positioned(
                           child: Container(
                             padding: const EdgeInsets.all(20),
-                            height: 200,
+                            height: 150,
                             width: MediaQuery.of(context).size.width,
                             decoration: const BoxDecoration(
                                 color: ColorConstants.blue,
@@ -43,7 +43,7 @@ class _StudentMainState extends State<StudentMain> {
                           ),
                         ),
                         Positioned(
-                          top: 80,
+                          top: 30,
                           child: Center(
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
