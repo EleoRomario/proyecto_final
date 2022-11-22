@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto_final/screens/login.dart';
 import 'package:proyecto_final/screens/student/student_main.dart';
@@ -17,20 +18,27 @@ import 'package:proyecto_final/screens/teacher/teacher_main.dart';
 import 'package:proyecto_final/screens/teacher/teacher_new_class.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const Main());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  // This widget is the root of your application.
+class Main extends StatefulWidget {
+  const Main({ Key? key }) : super(key: key);
+
+  @override
+  _MainState createState() => _MainState();
+}
+
+class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'SchoolApp',
       theme: ThemeData(
-        primarySwatch:ColorConstants.primary,
+        primarySwatch: ColorConstants.primary,
         fontFamily: 'Poppins',
       ),
       initialRoute: '/',
@@ -42,15 +50,18 @@ class MyApp extends StatelessWidget {
         '/student/present/confirm': (context) => const StudentPresentConfirm(),
         '/student/sick': (context) => const StudentSick(),
         '/student/sick/form': (context) => const StudentSickForm(),
-        '/student/sick/form/confirm': (context) => const StudentSickFormConfirm(),
+        '/student/sick/form/confirm': (context) =>
+            const StudentSickFormConfirm(),
         '/student/permission': (context) => const StudentPermission(),
         '/student/permission/form': (context) => const StudentPermissionForm(),
-        '/student/permission/form/confirm': (context) => const StudentPermissionFormConfirm(),
+        '/student/permission/form/confirm': (context) =>
+            const StudentPermissionFormConfirm(),
         '/teacher': (context) => const Teacher(),
         '/teacher/main': (context) => const TeacherMain(),
         '/teacher/new_class': (context) => const TeacherNewClass(),
         '/teacher/attendance': (context) => const TeacherAttendance(),
-        '/teacher/attendance/confirm': (context) => const TeacherAttendanceConfirm(),
+        '/teacher/attendance/confirm': (context) =>
+            const TeacherAttendanceConfirm(),
       },
     );
   }

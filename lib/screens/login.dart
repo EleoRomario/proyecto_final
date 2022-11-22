@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final/models/user.dart';
+import 'package:proyecto_final/services/auth.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
 
 class Login extends StatefulWidget {
@@ -9,6 +11,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +51,13 @@ class _LoginState extends State<Login> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(50))),
                             ),
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/teacher');
+                            onPressed: () async {
+                              //Navigator.pushNamed(context, '/teacher');
+                              signInWithGoogle().then((result) {
+                                if (result != null) {
+                                  Navigator.pushNamed(context, '/teacher');
+                                }
+                              });
                             },
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
