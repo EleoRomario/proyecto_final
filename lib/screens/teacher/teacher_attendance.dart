@@ -224,17 +224,20 @@ class _TeacherAttendanceState extends State<TeacherAttendance> {
                                     width: 10,
                                   ),
                                   Expanded(
-                                      child: Container(
-                                          height: 100,
-                                          padding: const EdgeInsets.all(20),
-                                          decoration: BoxDecoration(
-                                              color: ColorConstants.blue,
-                                              border: Border.all(
-                                                  color: ColorConstants.blue,
-                                                  width: 1),
+                                      child: ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pushNamed(
+                                                context, '/teacher/calendar');
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            padding: const EdgeInsets.all(23),
+                                            backgroundColor:
+                                                ColorConstants.blue,
+                                            shape: RoundedRectangleBorder(
                                               borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(10))),
+                                                  BorderRadius.circular(10),
+                                            ),
+                                          ),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,

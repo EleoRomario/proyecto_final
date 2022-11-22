@@ -377,15 +377,16 @@ class _StudentMainState extends State<StudentMain> {
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Expanded(child: Container(
-                                    height: 100,
-                                    padding: const EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                        color: ColorConstants.blue,
-                                        border: Border.all(
-                                            color: ColorConstants.blue, width: 1),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10))),
+                                  Expanded(child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, '/student/calendar');
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: ColorConstants.blue,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),                                    
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: const[
