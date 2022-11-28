@@ -237,9 +237,9 @@ class _TeacherAttendanceConfirmState extends State<TeacherAttendanceConfirm> {
                                       const SizedBox(width: 10),
                                       Row(
                                         children: [
-                                          IconButton(onPressed: (){}, icon: Icon(Icons.check_box_outlined, color: Colors.grey[900], size: 20)),
-                                          IconButton(onPressed: (){}, icon: Icon(Icons.cancel_presentation_rounded, color: Colors.grey[900], size: 20)),
-                                          IconButton(onPressed: (){}, icon: Icon(Icons.info_outlined, color: Colors.grey[900], size: 20)),
+                                          IconButton(onPressed: (){}, icon: Icon(Icons.check_box_outlined, color: Colors.grey[900], size: 30)),
+                                          IconButton(onPressed: (){}, icon: Icon(Icons.cancel_presentation_rounded, color: Colors.grey[900], size: 30)),
+                                          IconButton(onPressed: (){}, icon: Icon(Icons.info_outlined, color: Colors.grey[900], size: 30)),
                                         ],
                                       )
                                       ]
