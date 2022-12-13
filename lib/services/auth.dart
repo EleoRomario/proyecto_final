@@ -1,33 +1,41 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:proyecto_final/screens/login.dart';
+import 'package:proyecto_final/screens/student/student.dart';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
-final GoogleSignIn googleSignIn = GoogleSignIn();
+class AuthService {
 
-Future signInWithGoogle() async {
-  final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
-  final GoogleSignInAuthentication googleSignInAuthentication =
-      await googleSignInAccount!.authentication;
+  handleAutState(){
+    return StreamBuilder(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (BuildContext context, snapshot){
+        if(snapshot.hasData){
+          return Student();
+        }else{
+          return const Login();
+        }
+      }
+    );
+  }
 
-  final AuthCredential credential = GoogleAuthProvider.credential(
-    accessToken: googleSignInAuthentication.accessToken,
-    idToken: googleSignInAuthentication.idToken,
-  );
+  signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn(
+      scopes: <String>["email","profile"]).signIn();
 
-  final UserCredential authResult =
-      await _auth.signInWithCredential(credential);
-  final User? user = authResult.user;
+    final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
 
-  assert(await user?.getIdToken() != null);
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
 
-  final User currentUser = _auth.currentUser!;
-  assert(user?.uid == currentUser.uid);
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 
-  return currentUser;
-}
+  signOut(){
+    FirebaseAuth.instance.signOut();
+  }
 
-Future getCurrentUser() async {
-  User user = await FirebaseAuth.instance.currentUser!;
-  return user;
 }

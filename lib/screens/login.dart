@@ -1,5 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:proyecto_final/models/user.dart';
 import 'package:proyecto_final/services/auth.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
 
@@ -51,13 +51,16 @@ class _LoginState extends State<Login> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(50))),
                             ),
-                            onPressed: () async {
+                            onPressed: ()  {
+
+                              //AuthService().signInWithGoogle();
+
                               //Navigator.pushNamed(context, '/teacher');
-                              signInWithGoogle().then((result) {
-                                if (result != null) {
-                                  Navigator.pushNamed(context, '/teacher');
-                                }
-                              });
+                              AuthService().signInWithGoogle().then((result) {
+                                 if (result != null) {
+                                   Navigator.pushNamed(context, '/teacher');
+                                 }
+                               });
                             },
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

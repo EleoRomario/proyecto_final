@@ -20,6 +20,7 @@ import 'package:proyecto_final/screens/teacher/teacher_calendar.dart';
 import 'package:proyecto_final/screens/teacher/teacher_main.dart';
 import 'package:proyecto_final/screens/teacher/teacher_new_class.dart';
 import 'package:proyecto_final/screens/teacher/teacher_new_event.dart';
+import 'package:proyecto_final/services/auth.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
 import 'package:proyecto_final/src/provider/event_provider.dart';
 
@@ -47,6 +48,7 @@ class _MainState extends State<Main> {
           primarySwatch: ColorConstants.primary,
           fontFamily: 'Poppins',
         ),
+        debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
           '/': (context) => const Login(),

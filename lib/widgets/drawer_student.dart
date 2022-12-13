@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final/services/auth.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
+import 'package:proyecto_final/widgets/Header_student.dart';
 
 class DrawerStudent extends StatelessWidget {
   const DrawerStudent({Key? key}) : super(key: key);
@@ -10,49 +12,11 @@ class DrawerStudent extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
-            decoration: const BoxDecoration(
+          const DrawerHeader(
+            decoration: BoxDecoration(
               color: ColorConstants.blue,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.network(
-                      'https://images.unsplash.com/photo-1562246229-37b3aca47e18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-                      height: 80,
-                      width: 80,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Nombre Alumno',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    Text(
-                      'correo@gmail.com',
-                      style: TextStyle(
-                          color: Colors.grey[400],
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400),
-                    )
-                  ],
-                ),
-              ],
-            ),
+            child: HeaderStudent(),
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.75,
@@ -95,6 +59,7 @@ class DrawerStudent extends StatelessWidget {
                         style: TextStyle(color: Colors.grey),
                       ),
                       onTap: () {
+                        AuthService().signOut();
                         Navigator.pushNamed(context, '/');
                       },
                     ),
