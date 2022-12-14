@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:proyecto_final/services/auth.dart';
-import 'package:proyecto_final/src/config/color_constants.dart';
 
 class HeaderStudent extends StatelessWidget {
   const HeaderStudent({Key? key}) : super(key: key);

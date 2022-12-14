@@ -1,7 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:proyecto_final/models/clase.dart';
+import 'package:proyecto_final/screens/teacher/teacher_main.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
 import 'package:intl/intl.dart';
+import 'package:proyecto_final/widgets/Header_teacher.dart';
 import 'package:proyecto_final/widgets/drawer_teacher.dart';
+
+final db = FirebaseFirestore.instance;
+final classCollection = db.collection('clases');
+
+String nombre = 'Matematicas';
+String idProfesor = '1';
+DateTime horaLimite = DateTime.now();
 
 class TeacherNewClass extends StatefulWidget {
   const TeacherNewClass({Key? key}) : super(key: key);
@@ -10,8 +22,12 @@ class TeacherNewClass extends StatefulWidget {
   _TeacherNewClassState createState() => _TeacherNewClassState();
 }
 
+
 class _TeacherNewClassState extends State<TeacherNewClass> {
   TextEditingController timeinput = TextEditingController();
+  TextEditingController nameinput = TextEditingController();
+
+
 
   @override
   void initState() {
@@ -60,45 +76,7 @@ class _TeacherNewClassState extends State<TeacherNewClass> {
                                   offset: Offset(0.0, 0.0),
                                 )
                               ]),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Image.network(
-                                    'https://images.unsplash.com/photo-1562788869-4ed32648eb72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80',
-                                    height: 80,
-                                    width: 80,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Nombre profesor',
-                                    style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                  Text(
-                                    'correo@gmail.com',
-                                    style: TextStyle(
-                                        color: Colors.grey[400],
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w400),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
+                          child: const HeaderTeacher(),
                         ),
                       ]))),
               const SizedBox(height: 40),
@@ -155,6 +133,7 @@ class _TeacherNewClassState extends State<TeacherNewClass> {
                                         Column(
                                           children: [
                                             TextFormField(
+                                              controller: nameinput,
                                               decoration: InputDecoration(
                                                 labelText: 'Nombre del curso',
                                                 floatingLabelStyle:
@@ -321,7 +300,40 @@ class _TeacherNewClassState extends State<TeacherNewClass> {
                                             ),
                                             const SizedBox(width: 10),
                                             ElevatedButton.icon(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  if(nameinput.text.isEmpty){
+                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                        const SnackBar(
+                                                            content: Text(
+                                                                'El nombre no puede estar vacío')));
+                                                  }else if(timeinput.text.isEmpty){
+                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                        const SnackBar(
+                                                            content: Text(
+                                                                'La hora no puede estar vacía')));
+                                                  }else{
+                                                    Clase clase = Clase(
+                                                        nombre: nameinput.text,
+                                                        horaLimite: timeinput.text,
+                                                        idProfesor: FirebaseAuth.instance.currentUser!.uid,
+                                                        alumnos: []);
+
+                                                    FirebaseFirestore.instance
+                                                        .collection('clases')
+                                                        .add(clase.toJson());
+
+                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                        const SnackBar(
+                                                            content: Text(
+                                                                'Clase creada correctamente')));
+
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                const TeacherMain()));
+                                                  }                                                  
+                                                },
                                                 icon: const Icon(Icons.save,
                                                     color: Colors.white),
                                                 label: const Text(
