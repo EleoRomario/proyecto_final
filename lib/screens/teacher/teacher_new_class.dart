@@ -22,12 +22,9 @@ class TeacherNewClass extends StatefulWidget {
   _TeacherNewClassState createState() => _TeacherNewClassState();
 }
 
-
 class _TeacherNewClassState extends State<TeacherNewClass> {
   TextEditingController timeinput = TextEditingController();
   TextEditingController nameinput = TextEditingController();
-
-
 
   @override
   void initState() {
@@ -301,43 +298,53 @@ class _TeacherNewClassState extends State<TeacherNewClass> {
                                             const SizedBox(width: 10),
                                             ElevatedButton.icon(
                                                 onPressed: () {
-                                                  if(nameinput.text.isEmpty){
-                                                    ScaffoldMessenger.of(context).showSnackBar(
-                                                        const SnackBar(
-                                                            content: Text(
-                                                                'El nombre no puede estar vacío')));
-                                                  }else if(timeinput.text.isEmpty){
-                                                    ScaffoldMessenger.of(context).showSnackBar(
-                                                        const SnackBar(
-                                                            content: Text(
-                                                                'La hora no puede estar vacía')));
-                                                  }else{
+                                                  if (nameinput.text.isEmpty) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                            const SnackBar(
+                                                                content: Text(
+                                                                    'El nombre no puede estar vacío')));
+                                                  } else if (timeinput
+                                                      .text.isEmpty) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                            const SnackBar(
+                                                                content: Text(
+                                                                    'La hora no puede estar vacía')));
+                                                  } else {
                                                     Clase clase = Clase(
                                                         nombre: nameinput.text,
-                                                        horaLimite: timeinput.text,
-                                                        idProfesor: FirebaseAuth.instance.currentUser!.uid,
+                                                        horaLimite:
+                                                            timeinput.text,
+                                                        idProfesor: FirebaseAuth
+                                                            .instance
+                                                            .currentUser!
+                                                            .uid,
                                                         alumnos: []);
 
                                                     FirebaseFirestore.instance
                                                         .collection('clases')
                                                         .add(clase.toJson());
 
-                                                    ScaffoldMessenger.of(context).showSnackBar(
-                                                        const SnackBar(
-                                                            content: Text(
-                                                                'Clase creada correctamente')));
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                            const SnackBar(
+                                                                content: Text(
+                                                                    'Clase creada correctamente')));
 
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
                                                                 const TeacherMain()));
-                                                  }                                                  
+                                                  }
                                                 },
                                                 icon: const Icon(Icons.save,
                                                     color: Colors.white),
-                                                label: const Text(
-                                                    'Guardar',
+                                                label: const Text('Guardar',
                                                     style: TextStyle(
                                                         color: Colors.white)),
                                                 style: ElevatedButton.styleFrom(

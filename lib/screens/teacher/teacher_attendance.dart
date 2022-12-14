@@ -1,14 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
+import 'package:proyecto_final/widgets/Header_teacher.dart';
 import 'package:proyecto_final/widgets/drawer_teacher.dart';
+
 class TeacherAttendance extends StatefulWidget {
-  const TeacherAttendance({ Key? key }) : super(key: key);
+  const TeacherAttendance({Key? key}) : super(key: key);
 
   @override
   _TeacherAttendanceState createState() => _TeacherAttendanceState();
 }
 
 class _TeacherAttendanceState extends State<TeacherAttendance> {
+  final CollectionReference _eventosRef =
+      FirebaseFirestore.instance.collection("events");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,52 +71,7 @@ class _TeacherAttendanceState extends State<TeacherAttendance> {
                                         ]),
                                     child: Column(
                                       children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                              ),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                                child: Image.network(
-                                                  'https://images.unsplash.com/photo-1562788869-4ed32648eb72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80',
-                                                  height: 80,
-                                                  width: 80,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Nombre profesor',
-                                                  style: TextStyle(
-                                                      color: Colors.grey[900],
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                                Text(
-                                                  'correo@gmail.com',
-                                                  style: TextStyle(
-                                                      color: Colors.grey[400],
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                )
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                        const HeaderTeacher(),
                                         const Divider(
                                           color: Colors.grey,
                                           height: 20,
@@ -139,7 +100,8 @@ class _TeacherAttendanceState extends State<TeacherAttendance> {
                                                   const Text(
                                                     '15',
                                                     style: TextStyle(
-                                                        color: ColorConstants.blue,
+                                                        color:
+                                                            ColorConstants.blue,
                                                         fontSize: 20,
                                                         fontWeight:
                                                             FontWeight.w500),
@@ -152,8 +114,8 @@ class _TeacherAttendanceState extends State<TeacherAttendance> {
                                                 Navigator.pushNamed(context,
                                                     '/teacher/attendance/confirm');
                                               },
-                                              icon: const Icon(
-                                                  Icons.done_sharp),
+                                              icon:
+                                                  const Icon(Icons.done_sharp),
                                               label: const Text('Asistencia'),
                                               style: ElevatedButton.styleFrom(
                                                 shape: RoundedRectangleBorder(
@@ -195,31 +157,29 @@ class _TeacherAttendanceState extends State<TeacherAttendance> {
                               ),
                               Row(
                                 children: [
-                                  Expanded(
-                                      child: Container(
-                                    height: 100,
-                                    alignment: Alignment.center,
-                                    padding: const EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(10)),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 5,
-                                          blurRadius: 7,
-                                          offset: const Offset(0,
-                                              3), // changes position of shadow
-                                        ),
-                                      ],
-                                    ),
-                                    child: const Text('Ultimo evento',
-                                        style: TextStyle(
-                                            color: ColorConstants.blue,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w400)),
-                                  )),
+                                  StreamBuilder(
+                                      stream: _eventosRef.snapshots(),
+                                      builder: ((context,
+                                          AsyncSnapshot<QuerySnapshot>
+                                              snapshot) {
+                                        if (snapshot.hasData) {
+                                          return Text(
+                                            snapshot.data!.docs[0]["titulo"],
+                                            style: TextStyle(
+                                                color: Colors.grey[800],
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w400),
+                                          );
+                                        } else {
+                                          return Text(
+                                            'No hay eventos',
+                                            style: TextStyle(
+                                                color: Colors.grey[800],
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w400),
+                                          );
+                                        }
+                                      })),
                                   const SizedBox(
                                     width: 10,
                                   ),
