@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
 import 'package:proyecto_final/widgets/drawer_student.dart';
+
+import '../../widgets/Header_student.dart';
 
 class StudentMain extends StatefulWidget {
   const StudentMain({Key? key}) : super(key: key);
@@ -10,6 +14,8 @@ class StudentMain extends StatefulWidget {
 }
 
 class _StudentMainState extends State<StudentMain> {
+  final CollectionReference _eventosRef =
+      FirebaseFirestore.instance.collection("events");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,52 +72,7 @@ class _StudentMainState extends State<StudentMain> {
                                         ]),
                                     child: Column(
                                       children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                              ),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                                child: Image.network(
-                                                  'https://images.unsplash.com/photo-1562246229-37b3aca47e18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-                                                  height: 80,
-                                                  width: 80,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Nombre Alumno',
-                                                  style: TextStyle(
-                                                      color: Colors.grey[900],
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                                Text(
-                                                  'correo@gmail.com',
-                                                  style: TextStyle(
-                                                      color: Colors.grey[400],
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                )
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                        const HeaderStudent(),
                                         const Divider(
                                           color: Color.fromARGB(
                                               255, 235, 235, 235),
@@ -225,7 +186,7 @@ class _StudentMainState extends State<StudentMain> {
                                                 ],
                                               ),
                                             ),
-                                            ElevatedButton.icon(       
+                                            ElevatedButton.icon(
                                               onPressed: () {
                                                 Navigator.pushNamed(
                                                     context, '/student/present');
@@ -352,28 +313,52 @@ class _StudentMainState extends State<StudentMain> {
                               ),
                               Row(
                                 children: [
-                                  Expanded(child: Container(
-                                    height: 100,
-                                    alignment: Alignment.center,
-                                    padding: const EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 5,
-                                          blurRadius: 7,
-                                          offset: const Offset(0, 3), // changes position of shadow
-                                        ),
-                                      ],
-                                    ),
-                                    child: const Text('Ultimo evento',
-                                        style: TextStyle(
-                                            color: ColorConstants.blue,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w400)),
-                                  )),
+                                  Expanded(child: StreamBuilder(
+                                        stream: _eventosRef.snapshots(),
+                                        builder: ((context,
+                                            AsyncSnapshot<QuerySnapshot>
+                                                snapshot) {
+                                          if (snapshot.hasData) {
+                                            return Container(
+                                                alignment: Alignment.center,
+                                                padding:
+                                                    const EdgeInsets.all(20),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(10)),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Colors.grey
+                                                          .withOpacity(0.5),
+                                                      spreadRadius: 5,
+                                                      blurRadius: 7,
+                                                      offset: const Offset(0,
+                                                          3), // changes position of shadow
+                                                    ),
+                                                  ],
+                                                ),
+                                                child: Text(
+                                                  snapshot.data!.docs[0]
+                                                      ["titulo"],
+                                                  style: TextStyle(
+                                                      color: Colors.grey[800],
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ));
+                                          } else {
+                                            return Text(
+                                              'No hay eventos',
+                                              style: TextStyle(
+                                                  color: Colors.grey[800],
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w400),
+                                            );
+                                          }
+                                        })),
+                                  ),
                                   const SizedBox(
                                     width: 10,
                                   ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final/services/auth.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
+import 'package:proyecto_final/widgets/Header_teacher.dart';
 class DrawerTeacher extends StatelessWidget {
 const DrawerTeacher({ Key? key }) : super(key: key);
 
@@ -9,49 +11,11 @@ const DrawerTeacher({ Key? key }) : super(key: key);
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
-            decoration: const BoxDecoration(
+          const DrawerHeader(
+            decoration: BoxDecoration(
               color: ColorConstants.blue,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.network(
-                      'https://images.unsplash.com/photo-1562788869-4ed32648eb72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80',
-                      height: 80,
-                      width: 80,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Nombre profesor',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    Text(
-                      'correo@gmail.com',
-                      style: TextStyle(
-                          color: Colors.grey[400],
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400),
-                    )
-                  ],
-                ),
-              ],
-            ),
+            child: HeaderTeacher(),
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.75,
@@ -103,7 +67,9 @@ const DrawerTeacher({ Key? key }) : super(key: key);
                         style: TextStyle(color: Colors.grey),
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, '/');
+                        AuthService().signOut().then(() {
+                          Navigator.pushNamed(context, '/');
+                        });
                       },
                     ),
                   ],

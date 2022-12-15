@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:proyecto_final/models/event.dart';
@@ -219,6 +220,20 @@ Future pickADateTime({required bool pickDate}) async {
       );
     final provider = Provider.of<EventProvider>(context, listen: false);
     provider.addEvent(event);
+
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    CollectionReference events = firestore.collection('events');
+
+    events.add({
+      'titulo': _tituloController.text,
+      'descripcion': _descripcionController.text,
+      'fechaDe': fechaDe,
+      'fechaA': fechaA,
+      'isAllDay': false,
+    });
+
+    
 
     Navigator.of(context).pop();
   }

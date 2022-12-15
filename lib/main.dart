@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:proyecto_final/screens/login.dart';
@@ -20,12 +21,15 @@ import 'package:proyecto_final/screens/teacher/teacher_calendar.dart';
 import 'package:proyecto_final/screens/teacher/teacher_main.dart';
 import 'package:proyecto_final/screens/teacher/teacher_new_class.dart';
 import 'package:proyecto_final/screens/teacher/teacher_new_event.dart';
+import 'package:proyecto_final/services/auth.dart';
+import 'package:proyecto_final/services/notification_service.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
 import 'package:proyecto_final/src/provider/event_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await PushNotificationService.initializeApp();
   runApp(const Main());
 }
 
@@ -38,6 +42,11 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => EventProvider(),
@@ -47,6 +56,7 @@ class _MainState extends State<Main> {
           primarySwatch: ColorConstants.primary,
           fontFamily: 'Poppins',
         ),
+        debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
           '/': (context) => const Login(),
