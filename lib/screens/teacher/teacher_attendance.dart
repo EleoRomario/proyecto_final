@@ -163,13 +163,34 @@ class _TeacherAttendanceState extends State<TeacherAttendance> {
                                           AsyncSnapshot<QuerySnapshot>
                                               snapshot) {
                                         if (snapshot.hasData) {
-                                          return Text(
-                                            snapshot.data!.docs[0]["titulo"],
-                                            style: TextStyle(
-                                                color: Colors.grey[800],
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w400),
-                                          );
+                                          return Container(
+                                              alignment: Alignment.center,
+                                              padding: const EdgeInsets.all(20),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(10)),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.5),
+                                                    spreadRadius: 5,
+                                                    blurRadius: 7,
+                                                    offset: const Offset(0,
+                                                        3), // changes position of shadow
+                                                  ),
+                                                ],
+                                              ),
+                                              child: Text(
+                                                snapshot.data!.docs[0]
+                                                    ["titulo"],
+                                                style: TextStyle(
+                                                    color: Colors.grey[800],
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ));
                                         } else {
                                           return Text(
                                             'No hay eventos',

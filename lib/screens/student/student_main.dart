@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
@@ -13,6 +14,8 @@ class StudentMain extends StatefulWidget {
 }
 
 class _StudentMainState extends State<StudentMain> {
+  final CollectionReference _eventosRef =
+      FirebaseFirestore.instance.collection("events");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -310,28 +313,52 @@ class _StudentMainState extends State<StudentMain> {
                               ),
                               Row(
                                 children: [
-                                  Expanded(child: Container(
-                                    height: 100,
-                                    alignment: Alignment.center,
-                                    padding: const EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 5,
-                                          blurRadius: 7,
-                                          offset: const Offset(0, 3), // changes position of shadow
-                                        ),
-                                      ],
-                                    ),
-                                    child: const Text('Ultimo evento',
-                                        style: TextStyle(
-                                            color: ColorConstants.blue,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w400)),
-                                  )),
+                                  Expanded(child: StreamBuilder(
+                                        stream: _eventosRef.snapshots(),
+                                        builder: ((context,
+                                            AsyncSnapshot<QuerySnapshot>
+                                                snapshot) {
+                                          if (snapshot.hasData) {
+                                            return Container(
+                                                alignment: Alignment.center,
+                                                padding:
+                                                    const EdgeInsets.all(20),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(10)),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Colors.grey
+                                                          .withOpacity(0.5),
+                                                      spreadRadius: 5,
+                                                      blurRadius: 7,
+                                                      offset: const Offset(0,
+                                                          3), // changes position of shadow
+                                                    ),
+                                                  ],
+                                                ),
+                                                child: Text(
+                                                  snapshot.data!.docs[0]
+                                                      ["titulo"],
+                                                  style: TextStyle(
+                                                      color: Colors.grey[800],
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ));
+                                          } else {
+                                            return Text(
+                                              'No hay eventos',
+                                              style: TextStyle(
+                                                  color: Colors.grey[800],
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w400),
+                                            );
+                                          }
+                                        })),
+                                  ),
                                   const SizedBox(
                                     width: 10,
                                   ),
