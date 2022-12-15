@@ -59,8 +59,9 @@ class DrawerStudent extends StatelessWidget {
                         style: TextStyle(color: Colors.grey),
                       ),
                       onTap: () {
-                        AuthService().signOut();
-                        Navigator.pushNamed(context, '/');
+                        AuthService().signOut().then((){
+                          Navigator.pushNamed(context, '/');
+                        });
                       },
                     ),
                   ],
