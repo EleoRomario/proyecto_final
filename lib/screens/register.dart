@@ -1,21 +1,57 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:proyecto_final/models/user_login.dart';
+import 'package:proyecto_final/models/user.dart';
 import 'package:proyecto_final/services/auth.dart';
 import 'package:proyecto_final/utils/constants.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
 
   @override
-  _LoginState createState() => _LoginState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
 
-  bool _rememberMe = false;
+  Widget _buildNameTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const Text(
+          'Nombre completo',
+          style: kLabelStyle,
+        ),
+        const SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            controller: _nameController,
+            keyboardType: TextInputType.name,
+            style: const TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              hintText: 'Ingresa tu nombre',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
   Widget _buildEmailTF() {
     return Column(
@@ -89,71 +125,51 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget _buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: TextButton(
-        onPressed: () => print('Forgot Password Button Pressed'),
-        child: const Text(
-          'Olvidaste tu contraseña?',
-          style: kLabelStyle,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRememberMeCheckbox() {
-    return SizedBox(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value!;
-                });
-              },
-            ),
-          ),
-          const Text(
-            'Recordarme',
-            style: kLabelStyle,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildLoginBtn(String usuario) {
+  Widget _buildRegisterBtn(String typeUser) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
           if (_emailController.text.isNotEmpty &&
-              _passwordController.text.isNotEmpty) {
-            UserLogin userLogin = UserLogin(
-                email: _emailController.text,
-                password: _passwordController.text);
+              _passwordController.text.isNotEmpty &&
+              _nameController.text.isNotEmpty) {
+            UserApp usuario = UserApp(
+              displayName: _nameController.text,
+              email: _emailController.text,
+              password: _passwordController.text,
+              photoURL: '',
+              uid: '',
+            );
 
-            AuthService().signInWithEmailAndPassword(userLogin).then((result) {
+            AuthService().registerWithEmailAndPassword(usuario).then((result) {
               if (result != null) {
-                SnackBar(content: Text('Bienvenido $usuario'));
-                Navigator.pushReplacementNamed(context, '/student/main',
-                    arguments: {'usuario': usuario});
+                if (typeUser == 'teacher') {
+                  FirebaseFirestore.instance
+                      .collection('teachers')
+                      .add(usuario.toJson());
+                } else if (typeUser == 'student') {
+                  FirebaseFirestore.instance
+                      .collection('students')
+                      .add(usuario.toJson());
+                }
+                const SnackBar(
+                  content: Text('Usuario registrado'),
+                );
+                Navigator.pushReplacementNamed(context, '/login',
+                    arguments: {'usuario': typeUser});
               }
             });
           } else {
-            const SnackBar(content: Text('Campos vacios'));
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Por favor, rellena todos los campos'),
+              ),
+            );
           }
         },
         child: const Text(
-          'INGRESAR',
+          'Registrarte',
           style: TextStyle(
             color: Colors.white,
             letterSpacing: 1.5,
@@ -178,7 +194,7 @@ class _LoginState extends State<Login> {
         ),
         SizedBox(height: 20.0),
         Text(
-          'Ingresa con',
+          'Registrate con',
           style: kLabelStyle,
         ),
       ],
@@ -193,7 +209,7 @@ class _LoginState extends State<Login> {
         children: <Widget>[
           ElevatedButton(
             onPressed: () => {
-              AuthService().signInWithGoogle().then((result) {
+              AuthService().registerWithGoogle().then((result) {
                 if (result != null) {
                   if (usuario == 'student') {
                     Navigator.pushReplacementNamed(context, '/student/main');
@@ -227,17 +243,16 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget _buildSignupBtn(String usuario) {
+  Widget _buildSigninBtn(String usuario) {
     return GestureDetector(
       onTap: () => {
-        Navigator.pushReplacementNamed(context, '/register',
-            arguments: {'usuario': usuario}),
+        Navigator.pushNamed(context, '/login', arguments: {'usuario': usuario}),
       },
       child: RichText(
         text: const TextSpan(
           children: [
             TextSpan(
-              text: '¿No tienes cuenta? ',
+              text: '¿Ya tienes tienes cuenta? ',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -245,7 +260,7 @@ class _LoginState extends State<Login> {
               ),
             ),
             TextSpan(
-              text: 'Registrate',
+              text: 'Inicia sesión',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -261,7 +276,6 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     Map args = ModalRoute.of(context)!.settings.arguments as Map;
-
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
@@ -299,7 +313,7 @@ class _LoginState extends State<Login> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           const Text(
-                            'Iniciar Sesión',
+                            'Registro',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'OpenSans',
@@ -307,18 +321,20 @@ class _LoginState extends State<Login> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height: 30.0),
+                          const SizedBox(height: 25.0),
+                          _buildNameTF(),
+                          const SizedBox(
+                            height: 25.0,
+                          ),
                           _buildEmailTF(),
                           const SizedBox(
-                            height: 30.0,
+                            height: 25.0,
                           ),
                           _buildPasswordTF(),
-                          _buildForgotPasswordBtn(),
-                          _buildRememberMeCheckbox(),
-                          _buildLoginBtn(args['usuario']),
+                          _buildRegisterBtn(args['usuario']),
                           _buildSignInWithText(),
                           _buildSocialBtnRow(args['usuario']),
-                          _buildSignupBtn(args['usuario']),
+                          _buildSigninBtn(args['usuario']),
                         ],
                       ),
                     )),

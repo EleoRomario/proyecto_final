@@ -3,9 +3,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:proyecto_final/screens/login.dart';
+import 'package:proyecto_final/screens/register.dart';
+import 'package:proyecto_final/screens/splash_screen.dart';
 import 'package:proyecto_final/screens/student/student_calendar.dart';
 import 'package:proyecto_final/screens/student/student_main.dart';
-import 'package:proyecto_final/screens/student/student.dart';
+import 'package:proyecto_final/screens/student.dart';
 import 'package:proyecto_final/screens/student/student_permission.dart';
 import 'package:proyecto_final/screens/student/student_permission_form.dart';
 import 'package:proyecto_final/screens/student/student_permission_form_confirm.dart';
@@ -14,7 +16,7 @@ import 'package:proyecto_final/screens/student/student_present_confirm.dart';
 import 'package:proyecto_final/screens/student/student_sick.dart';
 import 'package:proyecto_final/screens/student/student_sick_form.dart';
 import 'package:proyecto_final/screens/student/student_sick_form_confirm.dart';
-import 'package:proyecto_final/screens/teacher/teacher.dart';
+import 'package:proyecto_final/screens/teacher.dart';
 import 'package:proyecto_final/screens/teacher/teacher_attendance.dart';
 import 'package:proyecto_final/screens/teacher/teacher_attendance_confirm.dart';
 import 'package:proyecto_final/screens/teacher/teacher_calendar.dart';
@@ -59,7 +61,9 @@ class _MainState extends State<Main> {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => const Login(),
+          '/': (context) => const SplashScreen(),
+          '/login': (context) => const Login(),
+          '/register':(context) => const Register(),
           '/student': (context) => const Student(),
           '/student/main': (context) => const StudentMain(),
           '/student/present': (context) => const StudentPresent(),

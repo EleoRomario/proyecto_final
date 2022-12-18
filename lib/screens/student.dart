@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
 
 class Student extends StatefulWidget {
-  const Student({ Key? key }) : super(key: key);
+  const Student({Key? key}) : super(key: key);
 
   @override
   _StudentState createState() => _StudentState();
@@ -50,7 +50,8 @@ class _StudentState extends State<Student> {
                                   BorderRadius.all(Radius.circular(50))),
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/student/main');
+                          Navigator.pushNamed(context, '/login',
+                              arguments: {'usuario': 'student'});
                         },
                         child: Text(
                           'Estudiante',
@@ -60,8 +61,7 @@ class _StudentState extends State<Student> {
                               fontWeight: FontWeight.w400),
                         ),
                       ),
-                      const Text(
-                          'Deslice para elegir Profesor',
+                      const Text('Deslice para elegir Profesor',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 15,

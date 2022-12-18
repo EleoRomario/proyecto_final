@@ -7,57 +7,52 @@ class HeaderStudent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-          mainAxisAlignment:
-          MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: Image.network(
+              (FirebaseAuth.instance.currentUser!.photoURL == null)
+                  ? "https://hope.be/wp-content/uploads/2015/05/no-user-image.gif"
+                  : FirebaseAuth.instance.currentUser!.photoURL!,
+              height: 80,
+              width: 80,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius:
-                BorderRadius.circular(50),
+            SizedBox(
+                width: 180,
+                child: Text(
+                  FirebaseAuth.instance.currentUser!.displayName!,
+                  style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      color: Colors.grey[900],
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600),
+                )),
+            SizedBox(
+              width: 180,
+              child: Text(
+                FirebaseAuth.instance.currentUser!.email!,
+                style: TextStyle(
+                    overflow: TextOverflow.ellipsis,
+                    color: Colors.grey[400],
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400),
               ),
-              child: ClipRRect(
-                borderRadius:
-                BorderRadius.circular(50),
-                child: Image.network(
-                  FirebaseAuth.instance.currentUser!.photoURL!,
-                  height: 80,
-                  width: 80,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Column(
-              mainAxisAlignment:
-              MainAxisAlignment.center,
-              crossAxisAlignment:
-              CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                    width: 180,
-                    child: Text(
-                      FirebaseAuth.instance.currentUser!.displayName!,
-                      style: TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                          color: Colors.grey[900],
-                          fontSize: 14,
-                          fontWeight:
-                          FontWeight.w600),
-                    )),
-                SizedBox(
-                  width: 180,
-                  child: Text(
-                    FirebaseAuth.instance.currentUser!.email!,
-                    style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        color: Colors.grey[400],
-                        fontSize: 12,
-                        fontWeight:
-                        FontWeight.w400),
-                  ),
-                )
-              ],
-            ),
+            )
           ],
+        ),
+      ],
     );
   }
 }

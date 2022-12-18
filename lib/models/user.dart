@@ -1,25 +1,35 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-
-class UserApp with ChangeNotifier {
-  String id;
-  String? displayName;
-  String? photoURL;
-  String? email;
+class UserApp {
+  final String uid;
+  final String displayName;
+  final String photoURL;
+  final String email;
+  final String password;
 
   UserApp({
-    required this.id,
+    required this.uid,
     required this.displayName,
     required this.photoURL,
     required this.email,
+    required this.password,
   });
 
-  factory UserApp.fromFirestore(DocumentSnapshot doc) {
+  factory UserApp.fromJson(Map<String, dynamic> json) {
     return UserApp(
-      id: doc['id'],
-      displayName: doc['displayName'],
-      photoURL: doc['photoURL'],
-      email: doc['email'],
+      uid: json['uid'],
+      displayName: json['displayName'],
+      photoURL: json['photoURL'],
+      email: json['email'],
+      password: json['password'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'uid': uid,
+      'displayName': displayName,
+      'photoURL': photoURL,
+      'email': email,
+      'password': password,
+    };
   }
 }
