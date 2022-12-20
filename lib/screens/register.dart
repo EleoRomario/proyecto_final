@@ -142,17 +142,8 @@ class _RegisterState extends State<Register> {
               uid: '',
             );
 
-            AuthService().registerWithEmailAndPassword(usuario).then((result) {
+            AuthService().registerWithEmailAndPassword(usuario, typeUser).then((result) {
               if (result != null) {
-                if (typeUser == 'teacher') {
-                  FirebaseFirestore.instance
-                      .collection('teachers')
-                      .add(usuario.toJson());
-                } else if (typeUser == 'student') {
-                  FirebaseFirestore.instance
-                      .collection('students')
-                      .add(usuario.toJson());
-                }
                 const SnackBar(
                   content: Text('Usuario registrado'),
                 );
@@ -178,67 +169,6 @@ class _RegisterState extends State<Register> {
             fontFamily: 'OpenSans',
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildSignInWithText() {
-    return Column(
-      children: const <Widget>[
-        Text(
-          '- O -',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        SizedBox(height: 20.0),
-        Text(
-          'Registrate con',
-          style: kLabelStyle,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSocialBtnRow(String usuario) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 30.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          ElevatedButton(
-            onPressed: () => {
-              AuthService().registerWithGoogle().then((result) {
-                if (result != null) {
-                  if (usuario == 'student') {
-                    Navigator.pushReplacementNamed(context, '/student/main');
-                  } else if (usuario == 'teacher') {
-                    Navigator.pushReplacementNamed(context, '/teacher/main');
-                  }
-                }
-              })
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
-              padding: const EdgeInsets.all(10),
-              shape: const CircleBorder(),
-            ),
-            child: Container(
-              height: 60.0,
-              width: 70.0,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-                image: DecorationImage(
-                  image: AssetImage(
-                    'assets/icons/google.png',
-                  ),
-                ),
-              ),
-            ),
-          )
-        ],
       ),
     );
   }
@@ -332,8 +262,6 @@ class _RegisterState extends State<Register> {
                           ),
                           _buildPasswordTF(),
                           _buildRegisterBtn(args['usuario']),
-                          _buildSignInWithText(),
-                          _buildSocialBtnRow(args['usuario']),
                           _buildSigninBtn(args['usuario']),
                         ],
                       ),

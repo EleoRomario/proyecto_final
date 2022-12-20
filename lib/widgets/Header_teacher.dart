@@ -21,6 +21,7 @@ class _HeaderTeacherState extends State<HeaderTeacher> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(50),
             child: Image.network(
+              (FirebaseAuth.instance.currentUser!.photoURL == null) ? 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png' :
               FirebaseAuth.instance.currentUser!.photoURL!,
               height: 80,
               width: 80,

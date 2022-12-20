@@ -20,6 +20,7 @@ import 'package:proyecto_final/screens/teacher.dart';
 import 'package:proyecto_final/screens/teacher/teacher_attendance.dart';
 import 'package:proyecto_final/screens/teacher/teacher_attendance_confirm.dart';
 import 'package:proyecto_final/screens/teacher/teacher_calendar.dart';
+import 'package:proyecto_final/screens/teacher/teacher_edit_class.dart';
 import 'package:proyecto_final/screens/teacher/teacher_main.dart';
 import 'package:proyecto_final/screens/teacher/teacher_new_class.dart';
 import 'package:proyecto_final/screens/teacher/teacher_new_event.dart';
@@ -82,6 +83,7 @@ class _MainState extends State<Main> {
           '/teacher': (context) => const Teacher(),
           '/teacher/main': (context) => const TeacherMain(),
           '/teacher/new_class': (context) => const TeacherNewClass(),
+          '/teacher/edit_class': (context) => const TeacherEditClass(),
           '/teacher/attendance': (context) => const TeacherAttendance(),
           '/teacher/attendance/confirm': (context) =>
               const TeacherAttendanceConfirm(),

@@ -20,7 +20,7 @@ class AuthService {
         });
   }
 
-  signInWithGoogle() async {
+  signInWithGoogle(String typeUser) async {
     final GoogleSignInAccount? googleUser =
         await GoogleSignIn(scopes: <String>["email", "profile"]).signIn();
 
@@ -32,10 +32,26 @@ class AuthService {
       idToken: googleAuth.idToken,
     );
 
+    User? user = (await FirebaseAuth.instance.signInWithCredential(credential))
+        .user;
+
+    final _user = {
+        'displayName': user?.displayName,
+        'email': user?.email,
+        'photoURL': user?.photoURL,
+        'uid': user?.uid,
+    };
+    
+    await FirebaseFirestore.instance
+        .collection(typeUser+'s')
+        .doc(user?.uid)
+        .set(_user);
+
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  signOut(){     FirebaseAuth.instance.signOut();
+  signOut() {
+    FirebaseAuth.instance.signOut();
   }
 
   signInWithEmailAndPassword(UserLogin _user) async {
@@ -44,18 +60,17 @@ class AuthService {
           .signInWithEmailAndPassword(
               email: _user.email.toString(),
               password: _user.password.toString());
-
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        print('Ningún usuario encontrado para ese correo electrónico.');
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        print('Contraseña incorrecta proporcionada para ese usuario.');
       }
     }
   }
 
-  registerWithEmailAndPassword(UserApp _user) async {
+  registerWithEmailAndPassword(UserApp _user, String typeUser) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
@@ -66,10 +81,11 @@ class AuthService {
       await user?.updateDisplayName(_user.displayName.toString());
       await user?.updatePhotoURL(_user.photoURL.toString());
       await FirebaseFirestore.instance
-          .collection('users')
+          .collection('teachers')
           .doc(user?.uid)
           .set(_user.toJson());
       await user?.reload();
+
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

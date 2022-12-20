@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:proyecto_final/models/user_login.dart';
@@ -129,7 +131,7 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget _buildLoginBtn(String usuario) {
+  Widget _buildLoginBtn(String typeUsuario) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
@@ -143,9 +145,14 @@ class _LoginState extends State<Login> {
 
             AuthService().signInWithEmailAndPassword(userLogin).then((result) {
               if (result != null) {
-                SnackBar(content: Text('Bienvenido $usuario'));
-                Navigator.pushReplacementNamed(context, '/student/main',
-                    arguments: {'usuario': usuario});
+                if (typeUsuario == 'student') {
+                    Navigator.pushReplacementNamed(context, '/student/main',
+                        arguments: {'usuario': typeUsuario});                 
+                } else if (typeUsuario == 'teacher') {                  
+                    Navigator.pushReplacementNamed(context, '/teacher/main',
+                        arguments: {'usuario': typeUsuario});
+                  
+                }
               }
             });
           } else {
@@ -193,7 +200,7 @@ class _LoginState extends State<Login> {
         children: <Widget>[
           ElevatedButton(
             onPressed: () => {
-              AuthService().signInWithGoogle().then((result) {
+              AuthService().signInWithGoogle(usuario).then((result) {
                 if (result != null) {
                   if (usuario == 'student') {
                     Navigator.pushReplacementNamed(context, '/student/main');

@@ -26,8 +26,7 @@ class PushNotificationService {
     // Handlers
     FirebaseMessaging.onBackgroundMessage(_backgroundHandler);
     FirebaseMessaging.onMessage.listen(_onMessageHandler);
-    FirebaseMessaging.onMessageOpenedApp.listen(_onMessageOpenApp);
-    
+    FirebaseMessaging.onMessageOpenedApp.listen(_onMessageOpenApp);    
 
   }
 }

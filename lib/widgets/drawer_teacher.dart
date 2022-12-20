@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_final/services/auth.dart';
 import 'package:proyecto_final/src/config/color_constants.dart';
 import 'package:proyecto_final/widgets/Header_teacher.dart';
+
 class DrawerTeacher extends StatelessWidget {
-const DrawerTeacher({ Key? key }) : super(key: key);
+  const DrawerTeacher({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -67,9 +68,8 @@ const DrawerTeacher({ Key? key }) : super(key: key);
                         style: TextStyle(color: Colors.grey),
                       ),
                       onTap: () {
-                        AuthService().signOut().then(() {
-                          Navigator.pushNamed(context, '/');
-                        });
+                        AuthService().signOut();
+                        Navigator.pushNamed(context, '/');
                       },
                     ),
                   ],
